@@ -1,0 +1,35 @@
+@import 'vars';
+
+@media (min-width: 768px) {
+  .layout {
+    margin: 110px auto;
+    max-width: 1280px;
+    height: 100%;
+  }
+  
+  .top {
+    background-color: #fff;
+    border: 1px solid $color-medium-gray;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    height: 100%;
+    margin: 60px auto;
+    position: relative;
+    width: 95%;
+    z-index: 1;
+  }
+}
+
+// MOBILE
+@media (max-width: 768px) {
+  .layout {
+    background-color: #fff;
+    border: 1px solid $color-medium-gray;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);
+    height: 100%;
+    margin: 60px auto;
+    position: relative;
+    width: 95%;
+    z-index: 1;
+  }
+}
+

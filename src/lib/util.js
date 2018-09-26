@@ -1,0 +1,1 @@
+export const renderIf = (test, trueComponent, falseComponent) => test? trueComponent : falseComponent || undefined;
