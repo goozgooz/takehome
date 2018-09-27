@@ -1,7 +1,12 @@
-const highlights = require('./data.js');
+const highlightRules = require('./data.js');
 
-let createStyleGuide = (highlights) => {
-  
+const string = 'You will deliver new technology with an adorable puppy. Perfect! You will deliver new technology with an adorable puppy. Perfect!';
+
+
+let createStyleGuide = module.exports = (highlights, str) => {
+  if(!highlights) {
+    highlights = highlightRules.one;
+  }
   // this will be the master style guide for every offset of the string
   let styleGuide = [];  
   
@@ -66,13 +71,27 @@ let createStyleGuide = (highlights) => {
     }
   }
   
-  return styleGuide;
+  //check to see if styleGuide will stop short of string's end
+  let lastRule = styleGuide[styleGuide.length -1];
+  if(lastRule.endOffset < str.length){
+    let startOffset = lastRule.endOffset + 1;
+    let endOffset = startOffset + (str.length - 1 - startOffset);
+    styleGuide.push({
+      startOffset: startOffset,
+      endOffset: endOffset,
+      priority: null,
+    });
+  }
+  
+  let result = {
+    highlights : styleGuide,
+    length: styleGuide[styleGuide.length-1].endOffset,
+  };
+  
+  return result;
 };
 
-
-module.exports = createStyleGuide(highlights.one);
-// module.exports = createStyleGuide(highlights.two);
-// console.log(createStyleGuide(highlights.one));
-// console.log(createStyleGuide(highlights.two));
+// createStyleGuide(highlightRules.one, string);
+console.log(createStyleGuide(null, string));
 
 

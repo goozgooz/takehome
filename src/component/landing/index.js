@@ -2,10 +2,9 @@ import './_landing.scss';
 import React from 'react';
 import {connect} from 'react-redux';
 
-import styleGuide from '../../highlight/index.js';
-console.log(styleGuide);
-const string = 'You will deliver new technology with an adorable puppy. Perfect!';
-console.log(string.indexOf('upp'));
+import creatStyleGuide from '../../highlight/index.js';
+const stringShort = 'You will deliver new technology with an adorable puppy. Perfect!';
+const stringLong = 'You will deliver new technology with an adorable puppy. Perfect! You will deliver new technology with an adorable puppy. Perfect!';
 
 class Landing extends React.Component{
   constructor(props){
@@ -15,9 +14,10 @@ class Landing extends React.Component{
   }
   
   
-  renderText() { 
-    return Object.keys(styleGuide).map((index,i) => {
-      let rule = styleGuide[index];
+  renderText(string) { 
+    let styleGuide = creatStyleGuide(null, string);
+    return Object.keys(styleGuide.highlights).map((index,i) => {
+      let rule = styleGuide.highlights[index];
       let chars = rule.endOffset - rule.startOffset + 1;
       
       if(rule.priority === null) {
@@ -37,11 +37,10 @@ class Landing extends React.Component{
   
   
   render(){
-  
     return(
       <div className='landing-wrapper'>
         <div className='highlighted-text'>
-          {this.renderText()}
+          {this.renderText(stringShort)}
         </div>
       </div>
     );
