@@ -1,8 +1,5 @@
 const highlights = require('./data.js');
 
-let string = 'You will deliver new technology with an adorable puppy. Perfect!';
-
-
 let createStyleGuide = (highlights) => {
   
   // this will be the master style guide for every offset of the string
@@ -73,6 +70,8 @@ let createStyleGuide = (highlights) => {
 };
 
 
+module.exports = createStyleGuide(highlights.one);
+// module.exports = createStyleGuide(highlights.two);
 // console.log(createStyleGuide(highlights.one));
 // console.log(createStyleGuide(highlights.two));
 
