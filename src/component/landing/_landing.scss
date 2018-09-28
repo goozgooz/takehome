@@ -2,8 +2,12 @@
 
 .highlighted-text{
   display: flex;
+  justify-content: center;
+  margin-top: 20%;
 }
 
 p {
-  font-size: 18px;
+  font-size: 19px;
+  line-height: 30px;
+  letter-spacing: .8px;
 }
