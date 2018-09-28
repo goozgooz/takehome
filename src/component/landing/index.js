@@ -12,7 +12,7 @@ class Landing extends React.Component{
   
   render(){
     return(
-      <div className='landing-wrapper'>
+      <div className='landing-container'>
         <Highlighter />
       </div>
     );

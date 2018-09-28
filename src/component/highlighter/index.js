@@ -3,9 +3,9 @@ import React from 'react';
 
 import TextForm from './text-form';
 
+import * as _ from '../../lib/util';
 import creatStyleGuide from '../../highlight/createStyleGuide.js';
-const stringShort = 'You will deliver new technology with an adorable puppy. Perfect!';
-const stringLong = 'You will deliver new technology with an adorable puppy. Perfect! You will deliver new technology with an adorable puppy. Perfect!';
+// You will deliver new technology with an adorable puppy. Perfect!
 
 const emptyState = {
   text: '',
@@ -26,13 +26,15 @@ class Highlighter extends React.Component {
   }
   
   renderText(string) { 
+    // create styleGuide that accounts for every portion of given string
     let styleGuide = creatStyleGuide(null, string);
 
     return Object.keys(styleGuide).map((index,i) => {
       let rule = styleGuide[index];
       let chars = styleGuide[index].endOffset - styleGuide[index].startOffset ;
       let stringChunk = string.substr(rule.startOffset, chars);
-
+      
+      // if not highlight is needed
       if(rule.priority === null) {
         return (
           <React.Fragment key={i}> 
@@ -40,6 +42,7 @@ class Highlighter extends React.Component {
           </React.Fragment>);
       } 
       
+      // if highlight is needed
       if(rule.priority !== null) {
         return(
           <React.Fragment key={i}>
@@ -54,14 +57,17 @@ class Highlighter extends React.Component {
   
   render(){
     return(
-      <div className='highlight-wrapper'>
+      <div className='highlight-container'>
         <TextForm 
           onSubmit={this.onSubmit}
         />
-      
-        <p className='highlighted-text'>
-          {this.renderText(this.state.text)}
-        </p>
+        
+        {_.renderIf(this.state.text, 
+          <p className='highlighted-text'>
+            {this.renderText(this.state.text)}
+          </p>
+        )}
+
       </div>
     );
   }

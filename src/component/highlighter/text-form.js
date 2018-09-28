@@ -45,7 +45,7 @@ class TextForm extends React.Component {
           name='string'
           value={this.state.string}
           onChange={this.handleChange}
-          placeHolder='Enter Text Here!'
+          placeholder='Enter Text Here!'
         />
         
         <div className='form-buttons'>
