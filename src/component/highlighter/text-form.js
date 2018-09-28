@@ -33,11 +33,13 @@ class TextForm extends React.Component {
         onSubmit={this.handleSubmit}
       >
         <input
+          autoComplete='off'
           className='string-input'
           type='text'
           name='string'
           value={this.state.string}
           onChange={this.handleChange}
+          placeHolder='Enter Text Here!'
         />
 
         <button 
