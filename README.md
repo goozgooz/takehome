@@ -3,6 +3,6 @@
 ### deal with case where entire rule might be covered
 
 
-
-
-## renderIf for the highlighted text
+### clean up comments + code 
+### testing
+### readme
