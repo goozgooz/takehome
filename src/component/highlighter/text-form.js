@@ -14,6 +14,7 @@ class TextForm extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.clearText = this.clearText.bind(this);
   }
 
   handleChange(e){
@@ -21,9 +22,14 @@ class TextForm extends React.Component {
     this.setState({[name]: value});
   };
   
+  clearText(){
+    this.setState(emptyState);
+  }
+  
   handleSubmit(e){
     e.preventDefault();
     this.props.onSubmit(this.state);
+    this.setState(emptyState);
   }
 
   render(){
@@ -41,13 +47,16 @@ class TextForm extends React.Component {
           onChange={this.handleChange}
           placeHolder='Enter Text Here!'
         />
-
-        <button 
-          type='submit'
-          className='submit-button'
-        >
-          Highlight!
-        </button>
+        
+        <div className='form-buttons'>
+          <button type='submit' className='submit-button'>
+            Highlight
+          </button>
+          
+          <button type='submit' className='submit-button'onClick={this.clearText}>
+            Clear Text
+          </button>
+        </div>
       </form> 
     );
   }
