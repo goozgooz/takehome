@@ -3,7 +3,7 @@ import React from 'react';
 
 import TextForm from './text-form';
 
-import creatStyleGuide from '../../highlight/index.js';
+import creatStyleGuide from '../../highlight/createStyleGuide.js';
 const stringShort = 'You will deliver new technology with an adorable puppy. Perfect!';
 const stringLong = 'You will deliver new technology with an adorable puppy. Perfect! You will deliver new technology with an adorable puppy. Perfect!';
 
@@ -58,7 +58,7 @@ class Highlighter extends React.Component {
         <TextForm 
           onSubmit={this.onSubmit}
         />
-        
+      
         <p className='highlighted-text'>
           {this.renderText(this.state.text)}
         </p>

@@ -1,12 +1,35 @@
 @import 'vars';
 
+.input-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  
+  input {
+    text-align: center;
+    width: 550px;
+  }
+  
+  button {
+    margin: 10px auto;
+    width: 100px;
+  }
+}
+
+.highlight-wrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+  
+}
+
 .highlighted-text{
   display: flex;
   font-size: 19px;
-  justify-content: center;
   letter-spacing: .8px;
   line-height: 30px;
-  margin-top: 20%;
+  margin-top: 40px;
 }
 
 

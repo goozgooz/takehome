@@ -47,7 +47,7 @@ class TextForm extends React.Component {
           Highlight!
         </button>
       </form> 
-    )
+    );
   }
 };
 
