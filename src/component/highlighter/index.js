@@ -1,11 +1,11 @@
+// You will deliver new technology with an adorable puppy. Perfect!
+
 import './_highlighter.scss';
 import React from 'react';
+import TextForm from './text-form';  
 
-import TextForm from './text-form';
-
-import * as _ from '../../lib/util';
+import * as _ from '../../lib/util';  // renderIf function
 import creatStyleGuide from '../../highlight/createStyleGuide.js';
-// You will deliver new technology with an adorable puppy. Perfect!
 
 const emptyState = {
   text: '',
@@ -18,10 +18,10 @@ class Highlighter extends React.Component {
     this.state = emptyState;
     
     this.renderText = this.renderText.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onTextFormSubmit = this.onTextFormSubmit.bind(this);
   }
   
-  onSubmit(input){
+  onTextFormSubmit(input){
     this.setState({text: input.string});
   }
   
@@ -31,10 +31,11 @@ class Highlighter extends React.Component {
 
     return Object.keys(styleGuide).map((index,i) => {
       let rule = styleGuide[index];
+      // needs chars variable to tell substr() how many chars to grab and store in stringChunk variable
       let chars = styleGuide[index].endOffset - styleGuide[index].startOffset ;
       let stringChunk = string.substr(rule.startOffset, chars);
       
-      // if not highlight is needed
+      // if no highlight is needed
       if(rule.priority === null) {
         return (
           <React.Fragment key={i}> 
@@ -59,7 +60,7 @@ class Highlighter extends React.Component {
     return(
       <div className='highlight-container'>
         <TextForm 
-          onSubmit={this.onSubmit}
+          onSubmit={this.onTextFormSubmit}
         />
         
         {_.renderIf(this.state.text, 
