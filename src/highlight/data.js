@@ -3,13 +3,13 @@ module.exports = {
     {
       startOffset: 4,
       endOffset: 31,
-      color: '#45b5e6', //blue
+      color: '#45b5e6b3', //blue
       priority: 0,
     },
     {
       startOffset: 28,
       endOffset: 49,
-      color: '#fa8926',  //orange 
+      color: '#fa8926b3',  //orange 
       priority: 1,
     },
     {
@@ -21,7 +21,7 @@ module.exports = {
     {
       startOffset: 65,
       endOffset: 80,
-      color: '#97c728', //green
+      color: '#97c728b3', //green
       priority: 1,
     },
   ],
@@ -30,13 +30,13 @@ module.exports = {
     {
       startOffset: 0,
       endOffset: 31,
-      color: '#45b5e6', //blue
+      color: '#45b5e6b3', //blue
       priority: 2,
     },
     {
       startOffset: 28,
       endOffset: 49,
-      color: '#fa8926',  //orange 
+      color: '#fa8926b3',  //orange 
       priority: 1,
     },
     {
@@ -48,7 +48,7 @@ module.exports = {
     {
       startOffset: 65,
       endOffset: 80,
-      color: '#97c728', //green
+      color: '#97c728b3', //green
       priority: 1,
     },
   ],
