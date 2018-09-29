@@ -47,9 +47,9 @@ class Highlighter extends React.Component {
       if(rule.priority !== null) {
         return(
           <React.Fragment key={i}>
-            <em style={{backgroundColor: rule.color}}>
+            <span style={{backgroundColor: rule.color}}>
               {stringChunk}
-            </em>
+            </span>
           </React.Fragment>
         );
       }
@@ -62,9 +62,9 @@ class Highlighter extends React.Component {
 
         
         {_.renderIf(this.state.text, 
-          <p className='highlighted-text'>
+          <div className='highlighted-text'>
             {this.renderText(this.state.text)}
-          </p>
+          </div>
         )}
 
         <TextForm 
