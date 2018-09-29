@@ -59,15 +59,17 @@ class Highlighter extends React.Component {
   render(){
     return(
       <div className='highlight-container'>
-        <TextForm 
-          onSubmit={this.onTextFormSubmit}
-        />
+
         
         {_.renderIf(this.state.text, 
           <p className='highlighted-text'>
             {this.renderText(this.state.text)}
           </p>
         )}
+
+        <TextForm 
+          onSubmit={this.onTextFormSubmit}
+        />
 
       </div>
     );

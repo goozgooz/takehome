@@ -4,32 +4,38 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-top: 20%;
-  
+  height: 300px;
+  position: relative;
 }
 
 .highlighted-text{
   display: flex;
   font-size: 19px;
+  font-weight: 300;
   letter-spacing: .8px;
   line-height: 30px;
-  margin-top: 40px;
+  position: absolute;
+  top: 150px;
 }
 
 .input-form {
   align-items: center;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   font-family: $font-main;
+  position: absolute;
   
   input {
     border: .5px solid gray;
     border-radius: 6px;
+    color: #5e5c5c;
     font-family: $font-main;
-    letter-spacing: .7px;
+    font-size: 15px;
+    margin-top: 40px;
     line-height: 28px;
     text-align: center;
-    width: 550px;
+    width: 750px;
     
     &:focus {
       outline: none;
@@ -37,29 +43,40 @@
   }
 }
 
-.submit-button {
-  background: white;
+.button {
   border: .5px solid gray;
   border-radius: 6px;
-  color: black;
   font-family: $font-main;
-  letter-spacing: .7px;
+  font-size: 15px;
+  font-weight: 300;
   margin: 10px;
   padding: 10px;
   width: 100px;
   
-  &:active {
-    background: #d4d4d4;
-    border-color: #8c8c8c;
+  &:focus {
+    outline: none;
   }
-  
+}
+
+
+.cancel {
+  background: white;
+  color: #6c696a;
+
   &:hover {
     background: #e6e6e6;
     border-color: #adadad;
   }
+}
+
+.submit {
+  background: #45b5e6;
+  border-color: #45b5e6;
+  color: white;
   
-  &:focus {
-    outline: none;
+  &:hover {
+    background: #1c97cd;
+    border-color: #1c97cd;
   }
 }
 
