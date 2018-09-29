@@ -28,13 +28,21 @@ class Highlighter extends React.Component {
   renderText(string) { 
     // create styleGuide that accounts for every portion of given string
     let styleGuide = creatStyleGuide(null, string);
-
     return Object.keys(styleGuide).map((index,i) => {
       let rule = styleGuide[index];
       // needs chars variable to tell substr() how many chars to grab and store in stringChunk variable
       let chars = styleGuide[index].endOffset - styleGuide[index].startOffset ;
       let stringChunk = string.substr(rule.startOffset, chars);
-      
+
+      if((rule.startOffset + chars) > string.length) {
+        chars = (string.length - rule.startOffset)
+        stringChunk = string.substr(rule.startOffset, chars);
+      }
+
+      if(rule.startOffset > string.length) {
+        return;
+      }
+
       // if no highlight is needed
       if(rule.priority === null) {
         return (
@@ -47,9 +55,9 @@ class Highlighter extends React.Component {
       if(rule.priority !== null) {
         return(
           <React.Fragment key={i}>
-            <em style={{backgroundColor: rule.color}}>
+            <span style={{backgroundColor: rule.color}}>
               {stringChunk}
-            </em>
+            </span>
           </React.Fragment>
         );
       }
@@ -59,15 +67,17 @@ class Highlighter extends React.Component {
   render(){
     return(
       <div className='highlight-container'>
+
+        
+        {_.renderIf(this.state.text, 
+          <div className='highlighted-text'>
+            {this.renderText(this.state.text)}
+          </div>
+        )}
+
         <TextForm 
           onSubmit={this.onTextFormSubmit}
         />
-        
-        {_.renderIf(this.state.text, 
-          <p className='highlighted-text'>
-            {this.renderText(this.state.text)}
-          </p>
-        )}
 
       </div>
     );

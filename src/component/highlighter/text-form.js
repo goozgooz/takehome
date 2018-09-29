@@ -45,15 +45,17 @@ class TextForm extends React.Component {
           name='string'
           value={this.state.string}
           onChange={this.handleChange}
+          onFocus={(e) => e.target.placeholder = ''} 
+          onBlur={(e) => e.target.placeholder = 'Enter Text Here!'}
           placeholder='Enter Text Here!'
         />
         
         <div className='form-buttons'>
-          <button type='submit' className='submit-button'>
+          <button type='submit' className='submit button'>
             Highlight
           </button>
           
-          <button type='submit' className='submit-button'onClick={this.clearText}>
+          <button type='submit' className='button cancel'onClick={this.clearText}>
             Clear Text
           </button>
         </div>
