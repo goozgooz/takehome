@@ -8,26 +8,16 @@
   },
   "author": "",
   "license": "ISC",
-  "jest": {
-    "setupFiles": [
-      "<rootDir>/src/__test__/shim.js",
-      "<rootDir>/src/__test__/setup.js"
-    ],
-    "moduleNameMapper": {
-      "\\.(scss)$": "<rootDir>/node_modules/jest-css-modules"
-    }
-  },
   "keywords": [],
   "devDependencies": {
     "babel-jest": "^22.0.4",
-    "enzyme": "^3.2.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "jest": "^22.0.3",
-    "jest-css-modules": "^1.1.0",
-    "react-test-renderer": "^16.2.0"
+    "jest": "^22.4.4"
+  },
+  "jest": {
+    "testURL": "http://localhost"
   },
   "scripts": {
-    "test": "jest -i --verbose",
+    "test": "jest --watch",
     "watch": "webpack-dev-server --inline --hot",
     "watch-work": "webpack-dev-server --inline --hot --public $C9_HOSTNAME --host $IP --port $PORT",
     "build": "webpack"
@@ -43,6 +33,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.9.3",
     "npm": "^6.1.0",
     "raw-loader": "^0.5.1",
     "react": "^16.2.0",

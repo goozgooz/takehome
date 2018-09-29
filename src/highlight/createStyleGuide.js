@@ -4,16 +4,20 @@ const highlightRules = require('./data.js');
 let createStyleGuide = module.exports = (highlights, str) => {
   // function is ready to accept a dynamic highlights key 
   // but for now it'll default to a hardcoded one if one isn't given as 1st argument
+
   if(!highlights) {
     highlights = highlightRules.one;
   }
-  
   // this will be the master style guide that we are building while iterating below
   let styleGuide = [];  
   
   for(let i=0; i < highlights.length; i++){
     let current = highlights[i];  
     let previous = styleGuide[styleGuide.length -1];
+
+    if(current.startOffset > str.length) {
+      console.log('hi');
+    }
   
     // deals with the very first highlight rule since previous = undefined the first time 
     if(i === 0) {
@@ -68,7 +72,7 @@ let createStyleGuide = module.exports = (highlights, str) => {
     }
     
   }
-  
+  console.log(styleGuide);
   // check to see if styleGuide will stop short of string's end
   // if styleGuide ends early - find the # of offsets missing and push a new rule to styleGuide
   let lastRule = styleGuide[styleGuide.length -1];

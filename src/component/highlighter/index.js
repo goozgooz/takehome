@@ -28,6 +28,7 @@ class Highlighter extends React.Component {
   renderText(string) { 
     // create styleGuide that accounts for every portion of given string
     let styleGuide = creatStyleGuide(null, string);
+    // console.log(styleGuide, string.length);
     return Object.keys(styleGuide).map((index,i) => {
       let rule = styleGuide[index];
       // needs chars variable to tell substr() how many chars to grab and store in stringChunk variable
