@@ -14,10 +14,6 @@ let createStyleGuide = module.exports = (highlights, str) => {
   for(let i=0; i < highlights.length; i++){
     let current = highlights[i];  
     let previous = styleGuide[styleGuide.length -1];
-
-    if(current.startOffset > str.length) {
-      console.log('hi');
-    }
   
     // deals with the very first highlight rule since previous = undefined the first time 
     if(i === 0) {
@@ -25,15 +21,14 @@ let createStyleGuide = module.exports = (highlights, str) => {
       
       // difference > 0 means there are unaccounted for offsets before our rule
       if(difference > 0) {
-        let endOffset = difference;  
         styleGuide.push({
           startOffset: 0,
-          endOffset: endOffset,
+          endOffset: current.startOffset,
           priority: null,
         });
         styleGuide.push(current);
       }
-      
+      // our rules start at 0 offset
       if(difference === 0) {
         styleGuide.push(current);
       }
@@ -46,16 +41,13 @@ let createStyleGuide = module.exports = (highlights, str) => {
       // handling rule with offsets overlapping
       if(difference <= 0) {
         if(current.priority > previous.priority){
-          current.startOffset -= difference;
+          current.startOffset = previous.endOffset;
           styleGuide.push(current);
         } 
         if (current.priority < previous.priority) {
           // could add a check for the edge case that a previous rule would be completely overlapped / replaced
-          previous.endOffset += difference;
+          previous.endOffset = current.startOffset;
           styleGuide.push(current);
-        }
-        if(current.priority === previous.priority){
-          // deal with this edge case later
         }
       } 
       
@@ -72,13 +64,13 @@ let createStyleGuide = module.exports = (highlights, str) => {
     }
     
   }
-  console.log(styleGuide);
+  
   // check to see if styleGuide will stop short of string's end
   // if styleGuide ends early - find the # of offsets missing and push a new rule to styleGuide
   let lastRule = styleGuide[styleGuide.length -1];
   if(lastRule.endOffset < str.length){
     let startOffset = lastRule.endOffset;
-    let endOffset = startOffset + (str.length - startOffset); 
+    let endOffset = str.length; 
     styleGuide.push({
       startOffset: startOffset,
       endOffset: endOffset,
@@ -89,8 +81,5 @@ let createStyleGuide = module.exports = (highlights, str) => {
   return styleGuide;
 };
 
-// const string = 'You will deliver new technology with an adorable puppy. Perfect! You will deliver new technology with an adorable puppy. Perfect!';
-// createStyleGuide(highlightRules.one, string);
-// console.log(createStyleGuide(null, string));
 
 

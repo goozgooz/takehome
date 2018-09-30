@@ -17,7 +17,7 @@
     "testURL": "http://localhost"
   },
   "scripts": {
-    "test": "jest --watch",
+    "test": "jest --coverage",
     "watch": "webpack-dev-server --inline --hot",
     "watch-work": "webpack-dev-server --inline --hot --public $C9_HOSTNAME --host $IP --port $PORT",
     "build": "webpack"
