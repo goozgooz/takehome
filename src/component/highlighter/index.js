@@ -25,21 +25,22 @@ class Highlighter extends React.Component {
     this.setState({text: input.string});
   }
   
-  renderText(string) { 
+  renderText(str) { 
     // create styleGuide that accounts for every portion of given string
-    let styleGuide = creatStyleGuide(null, string);
+    let styleGuide = creatStyleGuide(null, str);
+
     return Object.keys(styleGuide).map((index,i) => {
       let rule = styleGuide[index];
       // needs chars variable to tell substr() how many chars to grab and store in stringChunk variable
       let chars = styleGuide[index].endOffset - styleGuide[index].startOffset ;
-      let stringChunk = string.substr(rule.startOffset, chars);
+      let stringChunk = str.substr(rule.startOffset, chars);
 
-      if((rule.startOffset + chars) > string.length) {
-        chars = (string.length - rule.startOffset)
-        stringChunk = string.substr(rule.startOffset, chars);
+      // check to see if rule is past the length of given string
+      if((rule.startOffset + chars) > str.length) {
+        chars = (str.length - rule.startOffset)
+        stringChunk = str.substr(rule.startOffset, chars);
       }
-
-      if(rule.startOffset > string.length) {
+      if(rule.startOffset > str.length) {
         return;
       }
 
