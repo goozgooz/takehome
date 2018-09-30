@@ -4,7 +4,6 @@ require('dotenv').config();
 
 const HTMLPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
-const {DefinePlugin} = require('webpack');
 
 module.exports = {
   node: {
@@ -29,9 +28,6 @@ module.exports = {
       template: `${__dirname}/src/index.html`,
     }),
     new ExtractPlugin('bundle.[hash].css'),
-    new DefinePlugin({
-      '__GOOGLE_KEY__': JSON.stringify((process.env.GOOGLE_TOKEN)),
-    }),
   ],
     
   module: {
