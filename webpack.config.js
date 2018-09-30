@@ -2,15 +2,35 @@
 
 require('dotenv').config();
 
+const {DefinePlugin, EnvironmentPlugin} = require('webpack');
+const CleanPlugin = require('clean-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HTMLPlugin = require('html-webpack-plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 
+const production = process.env.NODE_ENV === 'production';
+
+let plugins = [
+  new HTMLPlugin({
+    template: `${__dirname}/src/index.html`,
+  }),
+  new ExtractPlugin('bundle.[hash].css'),
+  new EnvironmentPlugin({
+    NODE_ENV: process.env.NODE_ENV,
+  }),
+];
+
+if(production){
+  plugins = plugins.concat([
+    new UglifyJsPlugin(),
+    new CleanPlugin(),
+  ]);
+};
+
 module.exports = {
-  node: {
-    fs: 'empty',
-  },
+  plugins,
   
-  devtool: 'source-map',
+  devtool: production ? undefined : 'source-map',
   
   entry: `${__dirname}/src/main.js`,
 
@@ -21,14 +41,8 @@ module.exports = {
   output: {
     filename: 'bundle.[hash].js',
     path: `${__dirname}/build`,
+    publicPath: process.env.CDN_URL,
   },
-    
-  plugins: [
-    new HTMLPlugin({
-      template: `${__dirname}/src/index.html`,
-    }),
-    new ExtractPlugin('bundle.[hash].css'),
-  ],
     
   module: {
     rules: [

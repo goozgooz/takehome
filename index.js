@@ -1,10 +1,11 @@
-'use strict';
+use strict';
 
+const express = require('express');
 
-const app = require('express')();
-app.use(require('morgan')('common'));
-app.use(express.static(`${__dirname}/build`));
-app.get('*', res.sendFile(`${__dirname}/build/index/html`));
-app.listen(process.env.PORT, () => {
-  console.log('__SERVER_UP__', process.env.PORT);
-});
+express()
+  .use(require('morgan')('common'))
+  .use(express.static(`${__dirname}/build`))
+  .get('*', (req, res) => res.sendFile(`${__dirname}/build/index.html`))
+  .listen(process.env.PORT, () => {
+    console.log('__SERVER_UP__', process.env.PORT);
+  });
