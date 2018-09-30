@@ -1,5 +1,7 @@
 # Ashkaan Jaberi - Textio Take Home Assignment
 ### Set Up
+##### Run Locally
+
 `npm i` 
 `npm run watch`
 
