@@ -3,7 +3,6 @@
 import './_highlighter.scss';
 import React from 'react';
 import TextForm from './text-form';  
-
 import * as _ from '../../lib/util';  // renderIf function
 import creatStyleGuide from '../../highlight/createStyleGuide.js';
 
@@ -35,11 +34,12 @@ class Highlighter extends React.Component {
       let chars = styleGuide[index].endOffset - styleGuide[index].startOffset ;
       let stringChunk = str.substr(rule.startOffset, chars);
 
-      // check to see if rule is past the length of given string
+      // check to see if rule is past the length of given string -if so adjust so we don't render past str.length
       if((rule.startOffset + chars) > str.length) {
         chars = (str.length - rule.startOffset)
         stringChunk = str.substr(rule.startOffset, chars);
       }
+
       if(rule.startOffset > str.length) {
         return;
       }
@@ -68,8 +68,7 @@ class Highlighter extends React.Component {
   render(){
     return(
       <div className='highlight-container'>
-
-        
+      
         {_.renderIf(this.state.text, 
           <div className='highlighted-text'>
             {this.renderText(this.state.text)}

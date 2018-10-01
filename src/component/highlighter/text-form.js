@@ -38,6 +38,7 @@ class TextForm extends React.Component {
         className='input-form'
         onSubmit={this.handleSubmit}
       >
+
         <input
           autoComplete='off'
           className='string-input'
@@ -54,11 +55,12 @@ class TextForm extends React.Component {
           <button type='submit' className='submit button'>
             Highlight
           </button>
-          
-          <button type='submit' className='button cancel'onClick={this.clearText}>
+    
+          <button type='submit' className='button cancel' onClick={this.clearText}>
             Clear Text
           </button>
         </div>
+
       </form> 
     );
   }
