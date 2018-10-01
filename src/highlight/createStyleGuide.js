@@ -2,13 +2,11 @@
 const highlightRules = require('./data.js');
 
 let createStyleGuide = module.exports = (highlights, str) => {
-  // function is ready to accept a dynamic highlights key 
-  // but for now it'll default to a hardcoded one if one isn't given as 1st argument
-
+  // function is ready to accept a dynamic highlights key will defautl to a hardcoded one if one isn't given as 1st argument
   if(!highlights) {
     highlights = highlightRules.one;
   }
-  // this will be the master style guide that we are building while iterating below
+
   let styleGuide = [];  
   
   for(let i=0; i < highlights.length; i++){
@@ -19,7 +17,8 @@ let createStyleGuide = module.exports = (highlights, str) => {
     if(i === 0) {
       let difference = current.startOffset - 0;
       
-      // difference > 0 means there are unaccounted for offsets before our rule
+      // difference > 0 means there are unaccounted for offsets before our first given rule
+      // first .push() accounts for that - second .push() adds our first given rule
       if(difference > 0) {
         styleGuide.push({
           startOffset: 0,
@@ -28,7 +27,7 @@ let createStyleGuide = module.exports = (highlights, str) => {
         });
         styleGuide.push(current);
       }
-      // our rules start at 0 offset
+
       if(difference === 0) {
         styleGuide.push(current);
       }
@@ -38,20 +37,20 @@ let createStyleGuide = module.exports = (highlights, str) => {
     if(i > 0) {
       let difference = current.startOffset - previous.endOffset;
       
-      // handling rule with offsets overlapping
+      // handling cases where offsets overlap
       if(difference <= 0) {
         if(current.priority > previous.priority){
           current.startOffset = previous.endOffset;
           styleGuide.push(current);
         } 
+
         if (current.priority < previous.priority) {
-          // could add a check for the edge case that a previous rule would be completely overlapped / replaced
           previous.endOffset = current.startOffset;
           styleGuide.push(current);
         }
       } 
       
-      // no offset overlaps - need to account for possible uncovered offsets 
+      // difference > 0 means there's no overlaps - but there are unaccounted for offsets
       // 1st .push() is for uncovered offsets - 2nd if for our given rule
       if(difference > 0) {
         styleGuide.push({
@@ -71,6 +70,7 @@ let createStyleGuide = module.exports = (highlights, str) => {
   if(lastRule.endOffset < str.length){
     let startOffset = lastRule.endOffset;
     let endOffset = str.length; 
+
     styleGuide.push({
       startOffset: startOffset,
       endOffset: endOffset,
